@@ -1,28 +1,184 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Cours Numérique</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les bases du numérique</title>
+
+<style>
+
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f2f2f2;
+  color:#333;
+}
+
+header{
+  background:white;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 2px 5px rgba(0,0,0,0.05);
+}
+
+h1{
+  background:linear-gradient(90deg,#5b6cff,#3f51b5);
+  color:white;
+  display:inline-block;
+  padding:15px 30px;
+  border-radius:8px;
+  font-weight:500;
+}
+
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:40px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card h2{
+  font-size:20px;
+}
+
+button{
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  background:#f4b400;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:0.9;
+}
+
+.page{
+  display:none;
+  padding:40px;
+  max-width:800px;
+  margin:auto;
+}
+
+.active{
+  display:block;
+}
+
+.quiz button{
+  display:block;
+  margin:10px 0;
+  width:100%;
+}
+
+.home-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#5b6cff;
+  color:white;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+}
+
+</style>
 </head>
 <body>
 
 <header>
-  <h1>Plateforme de Cours</h1>
+  <h1>Les bases du numérique</h1>
 </header>
 
-<main>
-  <section id="home"></section>
-  <section id="content" class="hidden"></section>
-</main>
+<button class="home-btn" onclick="showHome()">🏠</button>
 
-<footer>
-  <button id="prevBtn">Précédent</button>
-  <button id="nextBtn">Suivant</button>
-</footer>
+<!-- PAGE ACCUEIL -->
+<div id="home" class="container active">
 
-<script src="data.js"></script>
-<script src="script.js"></script>
+  <div class="card">
+    <h2>La tablette</h2>
+    <button onclick="openPage('tablette')">Entrer</button>
+  </div>
+
+  <div class="card">
+    <h2>Les fonctions de base</h2>
+    <button onclick="openPage('fonctions')">Entrer</button>
+  </div>
+
+  <div class="card">
+    <h2>La sécurité</h2>
+    <button onclick="openPage('securite')">Entrer</button>
+  </div>
+
+</div>
+
+<!-- PAGE TABLETTE -->
+<div id="tablette" class="page">
+  <h2>La tablette</h2>
+  <p>Une tablette est un appareil tactile portable...</p>
+
+  <details>
+    <summary>Voir plus</summary>
+    <p>Elle permet de naviguer sur internet, regarder des vidéos...</p>
+  </details>
+
+  <div class="quiz">
+    <h3>Quiz</h3>
+    <p>La tablette est :</p>
+    <button onclick="check(this,false)">Un ordinateur fixe</button>
+    <button onclick="check(this,true)">Un appareil tactile portable</button>
+  </div>
+</div>
+
+<!-- PAGE FONCTIONS -->
+<div id="fonctions" class="page">
+  <h2>Les fonctions de base</h2>
+  <p>Allumer, éteindre, cliquer, glisser...</p>
+</div>
+
+<!-- PAGE SECURITE -->
+<div id="securite" class="page">
+  <h2>La sécurité</h2>
+  <p>Ne jamais partager son mot de passe...</p>
+</div>
+
+<script>
+
+function openPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('home').classList.remove('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function showHome(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('home').classList.add('active');
+}
+
+function check(btn,isCorrect){
+  if(isCorrect){
+    btn.style.background="lightgreen";
+  }else{
+    btn.style.background="salmon";
+  }
+}
+
+</script>
 
 </body>
 </html>
